@@ -6,6 +6,9 @@
 
 ```.
 ├── src                        # 代码文件夹
+│   ├── assets                 # 资源文件夹
+│   │   └── fonts              # 字体文件夹
+│   │       └── MapleMono.ttf  # 默认字体文件
 │   └── main.py                # 入口代码文件
 │
 ├── utils                      # 工具文件夹
