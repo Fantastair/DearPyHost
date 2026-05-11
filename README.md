@@ -36,7 +36,7 @@
 ## 获取项目
 
 ```bash
-git clone https://github.com/your-username/your-project.git
+git clone https://github.com/Fantastair/DearPyHost.git
 ```
 
 ## 环境配置
