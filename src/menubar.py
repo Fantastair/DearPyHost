@@ -3,6 +3,8 @@
 import dearpygui.dearpygui as dpg
 
 from modal_window import ModalWindow
+from node import node_category, add_node
+from node_editor import delete_selected_items, clear_node_editor
 
 
 class MenuBar:
@@ -34,17 +36,30 @@ class MenuBar:
                 dpg.add_menu_item(label="打开")
                 dpg.add_menu_item(label="保存")
                 dpg.add_menu_item(label="另存为")
-                dpg.add_menu_item(label="退出 DearPyHost")
+                dpg.add_menu_item(
+                    label="退出 DearPyHost", callback=lambda: dpg.stop_dearpygui()
+                )
 
             with dpg.menu(label="编辑"):
                 with dpg.menu(label="放置"):
-                    dpg.add_menu_item(label="串口收发器")
-                    dpg.add_menu_item(label="编码器")
-                    dpg.add_menu_item(label="解码器")
-                    dpg.add_menu_item(label="正则提取器")
-                    dpg.add_menu_item(label="波形显示器")
-                    dpg.add_menu_item(label="FFT分析器")
-                dpg.add_menu_item(label="清空画布")
+                    for category, nodes in node_category.items():
+                        with dpg.menu(label=category):
+                            for node in nodes:
+                                dpg.add_menu_item(
+                                    label=node, callback=add_node, user_data=nodes[node]
+                                )
+                dpg.add_menu_item(
+                    label="删除选中项",
+                    shortcut="(Del)",
+                    callback=lambda sender, app_data, user_data: (
+                        delete_selected_items()
+                    ),
+                )
+                dpg.add_menu_item(
+                    label="清空画布",
+                    shortcut="(Ctrl+Shift+Del)",
+                    callback=lambda sender, app_data, user_data: clear_node_editor(),
+                )
 
             with dpg.menu(label="视图"):
                 dpg.add_menu_item(

@@ -2,6 +2,8 @@
 
 import dearpygui.dearpygui as dpg
 
+from node import node_category, add_node
+
 
 class Sidebar:
     """侧边栏类"""
@@ -13,4 +15,12 @@ class Sidebar:
         with dpg.child_window(
             width=Sidebar._SIDEBAR_WIDTH, tag="__sidebar__", resizable_x=True
         ):
-            pass
+            for category, nodes in node_category.items():
+                with dpg.collapsing_header(label=category):
+                    for node in nodes:
+                        dpg.add_button(
+                            label=node,
+                            callback=add_node,
+                            user_data=nodes[node],
+                            width=-1,
+                        )
