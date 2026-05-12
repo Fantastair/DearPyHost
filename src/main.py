@@ -5,6 +5,7 @@ DearPyHost — 主入口
 from pathlib import Path
 import dearpygui.dearpygui as dpg
 
+from keyboard import init_keyboard_handlers
 from menubar import MenuBar
 from sidebar import Sidebar
 from node_editor import NodeEditor
@@ -48,6 +49,7 @@ def main():
     _load_default_font(DEFAULT_FONT_PATH)
     dpg.create_viewport(title="DearPyHost", width=1280, height=720)
 
+    init_keyboard_handlers()
     show_window()
 
     dpg.set_primary_window("__main_window__", True)
