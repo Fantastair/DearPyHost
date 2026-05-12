@@ -216,5 +216,23 @@ def check():
         raise e
 
 
+@app_command(app)
+def demo():
+    """运行 DearPyHost 演示"""
+    prints(
+        (r"\[demo] ", TITLE_STYLE),
+        ("运行 DearPyHost 演示", NORMAL_STYLE),
+    )
+
+    try:
+        cmd_run(["uv", "run", "utils/demo.py"])
+    except subprocess.CalledProcessError as e:
+        prints(
+            (r"\[demo] ", TITLE_STYLE),
+            ("DearPyHost 演示运行失败，请检查错误信息", ERROR_STYLE),
+        )
+        raise e
+
+
 if __name__ == "__main__":
     app()
