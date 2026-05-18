@@ -4,17 +4,17 @@ import dearpygui.dearpygui as dpg
 
 import node_editor
 
-__all__ = ["init_keyboard_handlers", "on_key_pressed"]
+__all__ = ["init_keyboard_handlers", "on_delete_key_pressed"]
 
 
 def init_keyboard_handlers():
     """初始化键盘事件处理器"""
     with dpg.handler_registry():
-        dpg.add_key_press_handler(callback=on_key_pressed)
+        dpg.add_key_press_handler(key=dpg.mvKey_Delete, callback=on_delete_key_pressed)
 
 
-def on_key_pressed(sender, app_data, user_data):
-    """键盘按下回调"""
+def on_delete_key_pressed(sender, app_data, user_data):
+    """删除键按下事件处理器"""
     ctrl = dpg.is_key_down(dpg.mvKey_ModCtrl)  # noqa: F841
     shift = dpg.is_key_down(dpg.mvKey_ModShift)  # noqa: F841
     alt = dpg.is_key_down(dpg.mvKey_ModAlt)  # noqa: F841
