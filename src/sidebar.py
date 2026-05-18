@@ -16,7 +16,7 @@ class Sidebar:
             width=Sidebar._SIDEBAR_WIDTH, tag="__sidebar__", resizable_x=True
         ):
             for category, nodes in node_category.items():
-                with dpg.collapsing_header(label=category):
+                with dpg.collapsing_header(label=category, default_open=True):
                     for node in nodes:
                         dpg.add_button(
                             label=node,

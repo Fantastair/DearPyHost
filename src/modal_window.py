@@ -15,6 +15,7 @@ class ModalWindow:
         with dpg.window(
             label=label,
             modal=True,
+            popup=True,
             tag=tag,
             width=width,
             height=height,
